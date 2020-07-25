@@ -17,9 +17,9 @@ export default function RouteWrapper({
     return <Redirect to="/" />;
   }
 
-  // if the user is logged and the route is not private, he will  be directed to the dashboard route
+  // if the user is logged and the route is not private, he will  be directed to the orders route
   if (signed && !isPrivate) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/orders" />;
   }
 
   const Layout = signed ? DefaultLayout : AuthLayout;
