@@ -27,7 +27,7 @@ export const Container = styled.div`
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 14px;
     font-family: sans-serif;
   }
 
@@ -41,6 +41,7 @@ export const Container = styled.div`
       box-shadow: 2px rgb(0, 0, 0, 0.2);
       border-radius: 4px;
       height: 44px;
+      font-size: 14px;
       padding: 0 15px;
       margin: 0 0 20px;
 
