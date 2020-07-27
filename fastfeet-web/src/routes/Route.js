@@ -5,12 +5,14 @@ import { Route, Redirect } from 'react-router-dom';
 import DefaultLayout from '~/pages/_Layouts/default';
 import AuthLayout from '~/pages/_Layouts/auth';
 
+import { store } from '~/store';
+
 export default function RouteWrapper({
   component: Component,
   isPrivate,
   ...rest
 }) {
-  const signed = false;
+  const { signed } = store.getState().auth;
 
   // if the user is not logged in and the route he wants to access is private, they will be directed to the login route
   if (!signed && isPrivate) {
