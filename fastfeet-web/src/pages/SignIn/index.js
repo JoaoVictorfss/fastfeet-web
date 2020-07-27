@@ -26,7 +26,7 @@ function SignIn() {
 
   return (
     <>
-      <img src={logo} alt="Gobarber" />
+      <img src={logo} alt="FastFeet" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
         <strong>Seu e-email</strong>
@@ -35,7 +35,9 @@ function SignIn() {
         <strong>Sua senha</strong>
         <Input name="password" type="password" placeholder="*************" />
 
-        <button type="submit">{loading ? 'Carregando...' : 'Acessar'}</button>
+        <button type="submit">
+          {loading ? 'Carregando...' : 'Entrar no sistema'}
+        </button>
       </Form>
     </>
   );
