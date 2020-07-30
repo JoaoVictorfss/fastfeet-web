@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { MdMoreHoriz } from 'react-icons/md';
+
 import Container from '~/components/Container';
 import Table from '~/components/Table';
+import Search from '~/components/SearchInput';
 
 export default function Orders() {
-  const tableBody = [
+  const [orders, setOrders] = useState([
     {
       id: 0,
       name: 'João Victor',
@@ -22,11 +24,23 @@ export default function Orders() {
       state: 'SP',
       status: 'entregado',
     },
-  ];
+  ]);
+
+  // const [filteredOrders, setFilteredOrders] = useState([]);
+
+  useEffect(() => {
+    // lógica para pegar os dados da api quando o componente executar
+  }, []);
+
+  function handleFilterChange(e) {
+    // lógica para filtrar ordens
+  }
 
   return (
     <Container>
-      <h1>Gerenciamento encomendas</h1>
+      <h2>Gerenciamento encomendas</h2>
+
+      <Search f={handleFilterChange} placeholder="encomendas" />
 
       <Table>
         <thead>
@@ -41,7 +55,7 @@ export default function Orders() {
           </tr>
         </thead>
         <tbody>
-          {tableBody.map((order) => (
+          {orders.map((order) => (
             <tr key={order.id}>
               <td>#{order.id}</td>
               <td>{order.name}</td>
