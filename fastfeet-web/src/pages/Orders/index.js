@@ -4,7 +4,7 @@ import { MdMoreHoriz } from 'react-icons/md';
 
 import Container from '~/components/Container';
 import Table from '~/components/Table';
-import Search from '~/components/SearchInput';
+import Panel from '~/components/Panel';
 
 export default function Orders() {
   const [orders, setOrders] = useState([
@@ -33,14 +33,22 @@ export default function Orders() {
   }, []);
 
   function handleFilterChange(e) {
-    // lógica para filtrar ordens
+    // lógica para filtrar orders
+  }
+
+  function handleAddOrders() {
+    // lógica para adicionar orders
   }
 
   return (
     <Container>
       <h2>Gerenciamento encomendas</h2>
 
-      <Search f={handleFilterChange} placeholder="encomendas" />
+      <Panel
+        onChange={handleFilterChange}
+        placeholder="encomendas"
+        onClick={handleAddOrders}
+      />
 
       <Table>
         <thead>
