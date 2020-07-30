@@ -3,6 +3,7 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   border-bottom: 2px solid #ddd;
+  margin-bottom: 30px;
   background: #fff;
   padding: 0 30px;
 `;
@@ -39,7 +40,7 @@ export const Navbar = styled.div`
     color: #999;
     font-weight: bold;
     letter-spacing: -0.05em;
-    font-size: 15px;
+    font-size: 16px;
     transition: color 0.2s;
     text-transform: uppercase;
 

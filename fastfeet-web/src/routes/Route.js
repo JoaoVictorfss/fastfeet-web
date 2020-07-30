@@ -12,7 +12,8 @@ export default function RouteWrapper({
   isPrivate,
   ...rest
 }) {
-  const { signed } = store.getState().auth;
+  // const { signed } = store.getState().auth;
+  const signed = true;
 
   // if the user is not logged in and the route he wants to access is private, they will be directed to the login route
   if (!signed && isPrivate) {
