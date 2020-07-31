@@ -1,13 +1,18 @@
-import styled from 'styled-components';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Container = styled.div`
-  max-width: 85%;
-  margin: 0 auto;
+import { Content } from './styles';
 
-  h2 {
-    margin-bottom: 35px;
-    color: #2e2e2e;
-  }
-`;
+export default function Container({ title, children }) {
+  return (
+    <Content>
+      <h2>{title}</h2>
+      {children}
+    </Content>
+  );
+}
 
-export default Container;
+Container.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+};

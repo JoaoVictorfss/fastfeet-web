@@ -1,40 +1,12 @@
-import styled from 'styled-components';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Table = styled.table`
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 15px;
+import { Content } from './styles';
 
-  thead th {
-    text-align: left;
-    padding-left: 20px;
-    color: #2e2e2e;
+export default function Table({ children }) {
+  return <Content>{children}</Content>;
+}
 
-    &:last-child {
-      text-align: right;
-      padding-right: 14px;
-    }
-  }
-
-  tbody {
-    background: #fff;
-  }
-
-  tbody td {
-    padding: 14px 20px;
-    color: #525050;
-
-    &:first-child {
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-    }
-
-    &:last-child {
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-      text-align: right;
-    }
-  }
-`;
-
-export default Table;
+Table.propTypes = {
+  children: PropTypes.element.isRequired,
+};

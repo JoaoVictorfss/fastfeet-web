@@ -4,7 +4,7 @@ import { MdMoreHoriz } from 'react-icons/md';
 
 import Container from '~/components/Container';
 import Table from '~/components/Table';
-import Panel from '~/components/Panel';
+import ActionsPanel from '~/components/ActionsPanel';
 
 export default function Orders() {
   const [orders, setOrders] = useState([
@@ -41,10 +41,8 @@ export default function Orders() {
   }
 
   return (
-    <Container>
-      <h2>Gerenciamento encomendas</h2>
-
-      <Panel
+    <Container title="Gerenciamento encomendas">
+      <ActionsPanel
         onChange={handleFilterChange}
         placeholder="encomendas"
         onClick={handleAddOrders}
