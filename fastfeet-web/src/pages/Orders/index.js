@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { MdMoreHoriz } from 'react-icons/md';
-
 import Container from '~/components/Container';
-import Table from '~/components/Table';
 import ActionsPanel from '~/components/ActionsPanel';
+import Table from '~/components/Table';
+import Options from './Options';
 
 export default function Orders() {
+  const [actionAvailable, setActionAvailable] = useState(true);
   const [orders, setOrders] = useState([
     {
       id: 0,
@@ -41,7 +41,8 @@ export default function Orders() {
   }
 
   return (
-    <Container title="Gerenciamento encomendas">
+    <Container>
+      <h2>Gerenciamento encomendas</h2>
       <ActionsPanel
         onChange={handleFilterChange}
         placeholder="encomendas"
@@ -70,7 +71,11 @@ export default function Orders() {
               <td>{order.state}</td>
               <td>{order.status}</td>
               <td>
-                <MdMoreHoriz size={20} color="#525050" />
+                <Options
+                  id={order.id}
+                  setClick={() => setActionAvailable(!actionAvailable)}
+                  actionAvailable={actionAvailable}
+                />
               </td>
             </tr>
           ))}
