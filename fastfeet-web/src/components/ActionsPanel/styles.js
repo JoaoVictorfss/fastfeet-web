@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { lighten } from 'polished';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  margin-top: 30px;
 `;
 
 export const SearchInput = styled.div`
@@ -38,6 +39,6 @@ export const AddButton = styled.button`
   transition: background 0.3s;
 
   &:hover {
-    background: ${lighten(0.03, '#7159c1')};
+    background: ${darken(0.06, '#7159c1')};
   }
 `;

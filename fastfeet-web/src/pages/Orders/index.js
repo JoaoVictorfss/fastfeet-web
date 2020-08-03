@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import Container from '~/components/Container';
 import ActionsPanel from '~/components/ActionsPanel';
-import Table from '~/components/Table';
 import Options from './Options';
+import { Table, Container } from './styles';
 
 export default function Orders() {
   const [actionAvailable, setActionAvailable] = useState(true);
@@ -26,6 +26,8 @@ export default function Orders() {
     },
   ]);
 
+  const history = useHistory();
+
   // const [filteredOrders, setFilteredOrders] = useState([]);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function Orders() {
   }
 
   function handleAddOrders() {
-    // lógica para adicionar orders
+    history.push('/orders/register');
   }
 
   return (
