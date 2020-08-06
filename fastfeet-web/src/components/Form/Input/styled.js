@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
 
   input {
     display: flex;
@@ -20,6 +21,7 @@ export const InputContainer = styled.div`
 
     &:focus {
       background-color: #fff;
+      border: 1px solid #3498db;
     }
   }
 
@@ -30,7 +32,6 @@ export const InputContainer = styled.div`
     font-size: 14px;
     font-family: sans-serif;
     margin-bottom: 4px;
-    margin-top: 10px;
   }
 
   span {

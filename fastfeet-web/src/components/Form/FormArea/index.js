@@ -7,7 +7,7 @@ const FormArea = styled(Form)`
   justify-content: center;
   border-radius: 4px;
   flex-direction: column;
-  padding: 30px 25px;
+  padding: 30px 28px 20px 28px;
 `;
 
 export default FormArea;
