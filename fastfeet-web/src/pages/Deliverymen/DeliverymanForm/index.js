@@ -20,10 +20,8 @@ export default function OrderForm() {
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        name: Yup.string().required('O nome do entregador é obrigatório'),
-        email: Yup.string()
-          .email()
-          .required('O e-mail do entregador é obrigatório'),
+        name: Yup.string().required('Campo obrigatório'),
+        email: Yup.string().email().required('Campo obrigatório'),
       });
 
       await schema.validate(data, {

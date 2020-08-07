@@ -50,8 +50,8 @@ export default function TableActions({ id, url, onClick, handleView }) {
     <>
       <Content>
         {showView && (
-          <Option type="button">
-            <MdRemoveRedEye color="#7159c1" onClick={handleView} />
+          <Option type="button" onClick={() => handleView()}>
+            <MdRemoveRedEye color="#7159c1" />
             Visualizar
           </Option>
         )}

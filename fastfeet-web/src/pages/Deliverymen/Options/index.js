@@ -6,13 +6,7 @@ import { ActionStyle } from './styles';
 
 import TableActions from '~/components/TableActions';
 
-export default function Options({
-  id,
-  setClick,
-  actionAvailable,
-  view,
-  setView,
-}) {
+export default function Options({ id, setClick, actionAvailable }) {
   const [visible, setVisible] = useState(false);
 
   function onClick() {
@@ -30,24 +24,12 @@ export default function Options({
     }
   }
 
-  function handleView() {
-    setView(!view);
-    onClick();
-  }
-
   return (
     <>
       <ActionStyle type="button" onClick={onClick}>
         <MdMoreHoriz size={20} />
       </ActionStyle>
-      {visible && (
-        <TableActions
-          url="orders"
-          id={id}
-          onClick={onClick}
-          handleView={handleView}
-        />
-      )}
+      {visible && <TableActions url="deliverymen" id={id} onClick={onClick} />}
     </>
   );
 }
@@ -56,6 +38,4 @@ Options.propTypes = {
   id: PropTypes.number.isRequired,
   setClick: PropTypes.func.isRequired,
   actionAvailable: PropTypes.bool.isRequired,
-  view: PropTypes.bool.isRequired,
-  setView: PropTypes.func.isRequired,
 };

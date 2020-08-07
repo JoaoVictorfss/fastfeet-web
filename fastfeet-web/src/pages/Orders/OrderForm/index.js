@@ -21,7 +21,7 @@ export default function OrderForm() {
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        productName: Yup.string().required('Este campo é obrigatório'),
+        productName: Yup.string().required('Campo obrigatório'),
       });
 
       await schema.validate(data, {

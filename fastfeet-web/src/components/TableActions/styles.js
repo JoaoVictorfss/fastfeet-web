@@ -13,7 +13,7 @@ export const Content = styled.ul`
   &::before {
     content: '';
     position: absolute;
-    left: calc(50% - 8px);
+    left: calc(50% - 7px);
     top: -8px;
     width: 0;
     height: 0;

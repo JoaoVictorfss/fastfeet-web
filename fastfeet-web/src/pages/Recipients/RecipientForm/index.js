@@ -21,12 +21,12 @@ export default function OrderForm() {
       formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        name: Yup.string().required('Este campo é obrigatório'),
-        street: Yup.string().required('Este campo é obrigatório'),
-        number: Yup.string().required('Este campo é obrigatório'),
-        city: Yup.string().required('Este campo é obrigatório'),
-        state: Yup.string().required('Este campo é obrigatório'),
-        zipCode: Yup.string().required('Este campo é obrigatório'),
+        name: Yup.string().required('Campo obrigatório'),
+        street: Yup.string().required('Campo obrigatório'),
+        number: Yup.string().required('Campo obrigatório'),
+        city: Yup.string().required('Campo obrigatório'),
+        state: Yup.string().required('Campo obrigatório'),
+        zipCode: Yup.string().required('Campo obrigatório'),
       });
 
       await schema.validate(data, {
