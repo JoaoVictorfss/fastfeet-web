@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 
 import history from '~/services/history';
 
+import AvatarInput from './AvatarInput';
 import { Container, InitialContent, FormArea, Input } from '~components/Form';
 
 export default function OrderForm() {
@@ -50,8 +51,8 @@ export default function OrderForm() {
         onClick={() => formRef.current.submitForm()}
         title={title}
       />
-
       <FormArea onSubmit={handleSubmit} ref={formRef}>
+        <AvatarInput />
         <Input name="name" type="text" label="Nome" placeholder="John Doe" />
         <Input
           name="email"
