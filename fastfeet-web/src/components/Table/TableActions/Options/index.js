@@ -6,22 +6,24 @@ import { toast } from 'react-toastify';
 import { MdEdit, MdDelete, MdRemoveRedEye } from 'react-icons/md';
 import { Content, Option } from './styles';
 
-export default function TableActions({ id, url, onClick, handleView }) {
+export default function Options({ id, url, onClick, handleView }) {
   const [showView, setShowView] = useState(false);
   const [showEdit, setshowEdit] = useState(true);
   const [labelDelete, setLabelDelete] = useState('Excluir');
-  const [item, setItem] = useState('esta encomenda');
 
   useEffect(() => {
-    if (url === 'deliverymen') {
-      setItem('este entregador');
-    } else if (url === 'recipients') {
-      setItem('este destinatário');
-    } else if (url === 'problems') {
-      setLabelDelete('Cancelar encomenda');
-      setshowEdit(false);
-      setShowView(true);
-    } else setShowView(true);
+    switch (url) {
+      case 'problems':
+        setLabelDelete('Cancelar encomenda');
+        setshowEdit(false);
+        setShowView(true);
+        break;
+      case 'orders':
+        setShowView(true);
+        break;
+      default:
+        break;
+    }
   }, [url]);
 
   const history = useHistory();
@@ -29,7 +31,7 @@ export default function TableActions({ id, url, onClick, handleView }) {
   function handleDelete() {
     // eslint-disable-next-line no-alert
     const confirm = window.confirm(
-      `Você tem certeza que deseja excluir ${item} ? `
+      `Você tem certeza que deseja excluir este item ? `
     );
 
     if (!confirm) {
@@ -73,11 +75,11 @@ export default function TableActions({ id, url, onClick, handleView }) {
   );
 }
 
-TableActions.defaultProps = {
+Options.defaultProps = {
   handleView: () => { },
 };
 
-TableActions.propTypes = {
+Options.propTypes = {
   id: PropTypes.number.isRequired,
   url: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,

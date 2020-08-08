@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { MdClose } from 'react-icons/md';
 import ActionsPanel from '~/components/ActionsPanel';
-import Options from './Options';
-
-import {
-  Table,
-  Container,
-  WrapperView,
-  PreviewContainer,
-  PreviewContent,
-} from './styles';
+import { TableContainer, TableActions } from '~components/Table';
+import { Container } from './styles';
+import Details from './Details';
 
 export default function Orders() {
   const [actionAvailable, setActionAvailable] = useState(true);
@@ -62,7 +55,7 @@ export default function Orders() {
           onClick={handleAddOrders}
         />
 
-        <Table>
+        <TableContainer>
           <thead>
             <tr>
               <th>ID</th>
@@ -84,52 +77,21 @@ export default function Orders() {
                 <td>{order.state}</td>
                 <td>{order.status}</td>
                 <td>
-                  <Options
+                  <TableActions
                     id={order.id}
                     setClick={() => setActionAvailable(!actionAvailable)}
                     actionAvailable={actionAvailable}
                     view={view}
                     setView={setView}
+                    url="orders"
                   />
                 </td>
               </tr>
             ))}
           </tbody>
-        </Table>
+        </TableContainer>
       </Container>
-      {view && (
-        <WrapperView>
-          <PreviewContainer>
-            <MdClose size={20} onClick={() => setView(!view)} />
-            <PreviewContent>
-              <ul>
-                <li>
-                  <strong>Informações sobre a encomenda</strong>
-                </li>
-                <li>Rua Beethoven, 1729</li>
-                <li>Diadema-SP</li>
-                <li>099660-580</li>
-              </ul>
-              <ul>
-                <li>
-                  <strong>Datas</strong>
-                </li>
-                <li>
-                  <strong>Retirada</strong>: 25/01/2020
-                </li>
-                <li>
-                  <strong>Entrega</strong>: 25/01/2020
-                </li>
-              </ul>
-              <ul>
-                <li>
-                  <strong>Assinatura do destinatário</strong>
-                </li>
-              </ul>
-            </PreviewContent>
-          </PreviewContainer>
-        </WrapperView>
-      )}
+      {view && <Details setView={() => setView(!view)} />};
     </>
   );
 }

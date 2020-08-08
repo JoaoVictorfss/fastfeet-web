@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import ActionsPanel from '~/components/ActionsPanel';
-import Options from './Options';
-import { Table, Container } from './styles';
+import { TableContainer, TableActions } from '~components/Table';
+import { Container } from './styles';
 
 export default function Recipients() {
   const [actionAvailable, setActionAvailable] = useState(true);
@@ -65,7 +65,7 @@ export default function Recipients() {
         onClick={handleAddOrders}
       />
 
-      <Table>
+      <TableContainer>
         <thead>
           <tr>
             <th>ID</th>
@@ -81,16 +81,17 @@ export default function Recipients() {
               <td>{order.name}</td>
               <td>{order.endereco}</td>
               <td>
-                <Options
+                <TableActions
                   id={order.id}
                   setClick={() => setActionAvailable(!actionAvailable)}
                   actionAvailable={actionAvailable}
+                  url="recipients"
                 />
               </td>
             </tr>
           ))}
         </tbody>
-      </Table>
+      </TableContainer>
     </Container>
   );
 }

@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 import { MdMoreHoriz } from 'react-icons/md';
 import { ActionStyle } from './styles';
 
-import TableActions from '~/components/TableActions';
+import Options from './Options';
 
-export default function Options({
+export default function TableActions({
   id,
   setClick,
   actionAvailable,
   view,
   setView,
+  url,
 }) {
   const [visible, setVisible] = useState(false);
 
@@ -41,21 +42,22 @@ export default function Options({
         <MdMoreHoriz size={20} />
       </ActionStyle>
       {visible && (
-        <TableActions
-          url="orders"
-          id={id}
-          onClick={onClick}
-          handleView={handleView}
-        />
+        <Options url={url} id={id} onClick={onClick} handleView={handleView} />
       )}
     </>
   );
 }
 
-Options.propTypes = {
+TableActions.defaultProps = {
+  setView: () => { },
+  view: false,
+};
+
+TableActions.propTypes = {
   id: PropTypes.number.isRequired,
   setClick: PropTypes.func.isRequired,
   actionAvailable: PropTypes.bool.isRequired,
-  view: PropTypes.bool.isRequired,
-  setView: PropTypes.func.isRequired,
+  view: PropTypes.bool,
+  setView: PropTypes.func,
+  url: PropTypes.string.isRequired,
 };

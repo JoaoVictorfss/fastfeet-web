@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import ActionsPanel from '~/components/ActionsPanel';
-import Options from './Options';
-import { Table, Container } from './styles';
+import { Container } from './styles';
+import { TableContainer, TableActions } from '~components/Table';
 
 export default function Deliveryman() {
   const [actionAvailable, setActionAvailable] = useState(true);
@@ -65,7 +65,7 @@ export default function Deliveryman() {
         onClick={handleAddDeliverymen}
       />
 
-      <Table>
+      <TableContainer>
         <thead>
           <tr>
             <th>ID</th>
@@ -83,16 +83,17 @@ export default function Deliveryman() {
               <td>{order.name}</td>
               <td>{order.email}</td>
               <td>
-                <Options
+                <TableActions
                   id={order.id}
                   setClick={() => setActionAvailable(!actionAvailable)}
                   actionAvailable={actionAvailable}
+                  url="deliverymen"
                 />
               </td>
             </tr>
           ))}
         </tbody>
-      </Table>
+      </TableContainer>
     </Container>
   );
 }
