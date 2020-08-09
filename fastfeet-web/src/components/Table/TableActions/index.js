@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { MdMoreHoriz } from 'react-icons/md';
-import { ActionStyle } from './styles';
+import { ActionStyle, Container } from './styles';
 
 import Options from './Options';
 
@@ -37,14 +37,14 @@ export default function TableActions({
   }
 
   return (
-    <>
-      <ActionStyle type="button" onClick={onClick}>
+    <Container>
+      <ActionStyle onClick={onClick}>
         <MdMoreHoriz size={20} />
       </ActionStyle>
       {visible && (
         <Options url={url} id={id} onClick={onClick} handleView={handleView} />
       )}
-    </>
+    </Container>
   );
 }
 

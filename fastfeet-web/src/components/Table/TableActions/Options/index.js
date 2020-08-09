@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { toast } from 'react-toastify';
 import { MdEdit, MdDelete, MdRemoveRedEye } from 'react-icons/md';
-import { Content, Option } from './styles';
+import { Container, Option, Button } from './styles';
 
 export default function Options({ id, url, onClick, handleView }) {
   const [showView, setShowView] = useState(false);
@@ -50,27 +50,32 @@ export default function Options({ id, url, onClick, handleView }) {
 
   return (
     <>
-      <Content>
-        {showView && (
-          <Option type="button" onClick={() => handleView()}>
-            <MdRemoveRedEye color="#7159c1" />
-            Visualizar
+      <Container problem={!showEdit}>
+        <ul>
+          {showView && (
+            <Option>
+              <Button onClick={() => handleView()}>
+                <MdRemoveRedEye color="#7159c1" />
+                Visualizar
+              </Button>
+            </Option>
+          )}
+          {showEdit && (
+            <Option>
+              <Button onClick={() => history.push(`${url}/edit/${id}`)}>
+                <MdEdit color="#3498db" />
+                Editar
+              </Button>
+            </Option>
+          )}
+          <Option>
+            <Button onClick={handleDelete}>
+              <MdDelete color="#e74c3c" />
+              {labelDelete}
+            </Button>
           </Option>
-        )}
-        {showEdit && (
-          <Option
-            type="button"
-            onClick={() => history.push(`${url}/edit/${id}`)}
-          >
-            <MdEdit color="#3498db" />
-            Editar
-          </Option>
-        )}
-        <Option type="button" onClick={handleDelete}>
-          <MdDelete color="#e74c3c" />
-          {labelDelete}
-        </Option>
-      </Content>
+        </ul>
+      </Container>
     </>
   );
 }

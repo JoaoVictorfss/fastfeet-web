@@ -34,6 +34,13 @@ const TableContainer = styled.table`
       border-bottom-right-radius: 5px;
       text-align: right;
     }
+
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 600px;
+    }
   }
 `;
 
