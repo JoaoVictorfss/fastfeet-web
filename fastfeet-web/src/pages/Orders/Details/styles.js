@@ -57,13 +57,16 @@ export const Content = styled.div`
       }
 
       &:first-child {
-        color: #2e2e2e;
         font-size: 14px;
-      }
-    }
 
-    strong {
-      color: #666666;
+        strong {
+          color: #2e2e2e;
+        }
+      }
+
+      strong {
+        color: #666666;
+      }
     }
   }
 `;

@@ -10,30 +10,30 @@ export default function Details({ setView }) {
       <Container>
         <MdClose size={20} onClick={() => setView()} />
         <Content>
-          <ul>
-            <li>
-              <strong>Informações sobre a encomenda</strong>
-            </li>
-            <li>Rua Beethoven, 1729</li>
-            <li>Diadema-SP</li>
-            <li>099660-580</li>
-          </ul>
-          <ul>
-            <li>
-              <strong>Datas</strong>
-            </li>
-            <li>
-              <strong>Retirada</strong>: 25/01/2020
-            </li>
-            <li>
-              <strong>Entrega</strong>: 25/01/2020
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <strong>Assinatura do destinatário</strong>
-            </li>
-          </ul>
+          <strong>Visualizar Problema</strong>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            asperiores accusantium laboriosam recusandae molestiae! Magnam
+            ducimus quo nihil cumque sequi quia provident aliquam non Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            asperiores accusantium laboriosam recusandae molestiae! Magnam
+            ducimus quo nihil cumque sequi quia provident aliquam non Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Dignissimos Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            asperiores accusantium laboriosam recusandae molestiae! Magnam
+            ducimus quo nihil cumque sequi quia provident aliquam non Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            asperiores accusantium laboriosam recusandae molestiae! Magnam
+            ducimus quo nihil cumque sequi quia provident aliquam non Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. DignissimosLorem
+            ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            asperiores accusantium laboriosam recusandae molestiae! Magnam
+            ducimus quo nihil cumque sequi quia provident aliquam non Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+            asperiores accusantium laboriosam recusandae molestiae! Magnam
+            ducimus quo nihil cumque sequi quia provident aliquam non Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+          </p>
         </Content>
       </Container>
     </WrapperView>

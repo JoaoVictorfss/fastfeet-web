@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 export const WrapperView = styled.div`
   top: 0;
@@ -12,14 +13,14 @@ export const WrapperView = styled.div`
 `;
 
 export const Container = styled.div`
-  top: 33%;
+  top: 27%;
   position: absolute;
-  max-width: 350px;
-  width: 100%;
-  max-height: 280px;
+  width: 350px;
+  height: 350px;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0px 0px 1px 1px rgba(240, 236, 236, 0.767);
+  overflow: auto;
 
   svg {
     color: #666666;
@@ -39,31 +40,12 @@ export const Container = styled.div`
 export const Content = styled.div`
   padding: 24px;
 
-  ul {
-    padding: 0;
-    margin: 0;
-    border-bottom: 1px solid rgb(109, 107, 107, 0.2);
-    margin-bottom: 8px;
+  p {
+    margin-top: 4px;
+    color: #909090;
+  }
 
-    &:last-child {
-      border-bottom: none;
-    }
-
-    li {
-      margin-bottom: 8px;
-
-      & ~ li {
-        color: #909090;
-      }
-
-      &:first-child {
-        color: #2e2e2e;
-        font-size: 14px;
-      }
-    }
-
-    strong {
-      color: #666666;
-    }
+  strong {
+    color: #666666;
   }
 `;

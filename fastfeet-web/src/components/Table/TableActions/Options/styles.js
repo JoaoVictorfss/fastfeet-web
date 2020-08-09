@@ -28,7 +28,7 @@ export const Container = styled.div`
 `;
 
 export const Option = styled.li`
-  padding: 6px 0;
+  padding: 8px 0;
   border-bottom: 1px solid rgb(109, 107, 107, 0.2);
   cursor: pointer;
 
