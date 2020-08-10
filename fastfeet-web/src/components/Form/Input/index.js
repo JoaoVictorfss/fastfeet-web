@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useField } from '@unform/core';
 
-import { InputContainer } from './styled';
+import { InputContainer } from './styles';
 
 export default function Input({ name, label, ...rest }) {
   const inputRef = useRef(null);

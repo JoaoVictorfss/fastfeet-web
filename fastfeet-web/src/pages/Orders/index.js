@@ -41,10 +41,6 @@ export default function Orders() {
     // lógica para filtrar orders
   }
 
-  function handleAddOrders() {
-    history.push('/orders/register');
-  }
-
   return (
     <>
       <Container>
@@ -52,7 +48,7 @@ export default function Orders() {
         <ActionsPanel
           onChange={handleFilterChange}
           placeholder="encomendas"
-          onClick={handleAddOrders}
+          url="orders"
         />
 
         <TableContainer>

@@ -52,17 +52,13 @@ export default function Recipients() {
     // lógica para filtrar orders
   }
 
-  function handleAddOrders() {
-    history.push('/recipients/register');
-  }
-
   return (
     <Container>
       <h2>Gerenciamento destinatários</h2>
       <ActionsPanel
         onChange={handleFilterChange}
         placeholder="destinatário"
-        onClick={handleAddOrders}
+        url="recipients"
       />
 
       <TableContainer>

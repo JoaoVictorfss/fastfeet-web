@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { MdSearch } from 'react-icons/md';
 import { IoIosAdd } from 'react-icons/io';
 
 import { Container, SearchInput, AddButton } from './styles';
 
-export default function Panel({ onChange, placeholder, onClick }) {
+export default function Panel({ onChange, placeholder, url }) {
+  const [page, setPage] = useState('');
+
+  useEffect(() => {
+    const pageRegister = `${url}/register`;
+    setPage(pageRegister);
+  }, [url]);
+
   return (
     <Container>
       <SearchInput>
@@ -18,9 +26,9 @@ export default function Panel({ onChange, placeholder, onClick }) {
         />
       </SearchInput>
 
-      <AddButton onClick={onClick}>
-        <IoIosAdd size={30} />
-        CADASTRAR
+      <AddButton>
+        <IoIosAdd size={30} color="#fff" />
+        <Link to={page}>CADASTRAR</Link>
       </AddButton>
     </Container>
   );
@@ -29,5 +37,5 @@ export default function Panel({ onChange, placeholder, onClick }) {
 Panel.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };

@@ -30,15 +30,23 @@ export const SearchInput = styled.div`
 export const AddButton = styled.button`
   display: flex;
   align-items: center;
-  color: #fff;
   padding: 4px 10px;
   background: #7159c1;
-  font-weight: bold;
   border: none;
   border-radius: 5px;
   transition: background 0.3s;
 
   &:hover {
     background: ${darken(0.06, '#7159c1')};
+  }
+
+  a {
+    font-size: 15px;
+    color: #fff;
+    font-weight: bold;
+
+    svg {
+      color: #666;
+    }
   }
 `;

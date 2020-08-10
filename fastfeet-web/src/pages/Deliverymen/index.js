@@ -52,17 +52,13 @@ export default function Deliveryman() {
     // lógica para filtrar deliverymen
   }
 
-  function handleAddDeliverymen() {
-    history.push('/deliverymen/register');
-  }
-
   return (
     <Container>
       <h2>Gerenciamento encomendas</h2>
       <ActionsPanel
         onChange={handleFilterChange}
         placeholder="encomendas"
-        onClick={handleAddDeliverymen}
+        url="deliverymen"
       />
 
       <TableContainer>

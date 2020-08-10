@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 
 export const WrapperView = styled.div`
   top: 0;

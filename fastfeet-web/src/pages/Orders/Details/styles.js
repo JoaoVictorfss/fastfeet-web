@@ -13,6 +13,7 @@ export const WrapperView = styled.div`
 
 export const Container = styled.div`
   top: 33%;
+  z-index: 1;
   position: absolute;
   max-width: 350px;
   width: 100%;
