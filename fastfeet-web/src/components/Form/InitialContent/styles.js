@@ -6,11 +6,11 @@ export const Container = styled.div`
   align-items: top;
   justify-content: space-between;
   margin-top: 25px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 
   h2 {
     color: #2e2e2e;
-    font-size: 28px;
+    font-size: 26px;
   }
 `;
 

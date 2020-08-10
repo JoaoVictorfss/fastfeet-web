@@ -21,7 +21,8 @@ const TableContainer = styled.table`
   }
 
   tbody td {
-    padding: 10px 18px;
+    height: 43px;
+    padding: 0 18px;
     color: #525050;
 
     &:first-child {

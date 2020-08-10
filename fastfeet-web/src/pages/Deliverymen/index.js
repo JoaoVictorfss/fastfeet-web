@@ -54,7 +54,7 @@ export default function Deliveryman() {
 
   return (
     <Container>
-      <h2>Gerenciamento encomendas</h2>
+      <h2>Gerenciamento entregadores</h2>
       <ActionsPanel
         onChange={handleFilterChange}
         placeholder="encomendas"

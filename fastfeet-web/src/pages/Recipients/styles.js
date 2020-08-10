@@ -5,8 +5,8 @@ export const Container = styled.div`
   margin: 0 auto;
 
   h2 {
-    margin-top: 30px;
+    margin-top: 24px;
     color: #2e2e2e;
-    font-size: 28px;
+    font-size: 25px;
   }
 `;

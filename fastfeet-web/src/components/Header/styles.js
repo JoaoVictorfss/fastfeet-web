@@ -39,7 +39,7 @@ export const Navbar = styled.div`
     color: #999;
     font-weight: bold;
     letter-spacing: -0.05em;
-    font-size: 16px;
+    font-size: 15.8px;
     transition: color 0.2s;
     text-transform: uppercase;
 

@@ -4,8 +4,8 @@ import { darken } from 'polished';
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
-  margin-top: 30px;
+  margin-bottom: 6px;
+  margin-top: 25px;
 `;
 
 export const SearchInput = styled.div`
