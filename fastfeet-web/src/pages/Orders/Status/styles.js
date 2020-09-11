@@ -7,7 +7,6 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   text-transform: uppercase;
   max-width: 120px;

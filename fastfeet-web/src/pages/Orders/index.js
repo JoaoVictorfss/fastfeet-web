@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import ActionsPanel from '~/components/ActionsPanel';
 import { TableContainer, TableActions } from '~components/Table';
@@ -11,63 +10,7 @@ export default function Orders() {
   const [actionAvailable, setActionAvailable] = useState(true);
   const [view, setView] = useState(false);
 
-  const [orders, setOrders] = useState([
-    {
-      id: 1,
-      recipient: 'Maria Joquina',
-      deliveryman: 'João Victor Fernandes',
-      url: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-      city: 'Uberaba',
-      state: 'SP',
-      status: 'retirada',
-    },
-    {
-      id: 2,
-      recipient: 'Maria Joquina',
-      deliveryman: 'João Victor Fernandes',
-      url: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-      city: 'Uberaba',
-      state: 'SP',
-      status: 'cancelada',
-    },
-    {
-      id: 3,
-      recipient: 'Maria Joquina',
-      deliveryman: 'João Victor Fernandes',
-      url: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-      city: 'Uberaba',
-      state: 'SP',
-      status: 'entregue',
-    },
-    {
-      id: 4,
-      recipient: 'Maria Joquina',
-      deliveryman: 'João Victor Fernandes',
-      url: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-      city: 'Uberaba',
-      state: 'SP',
-      status: 'entregue',
-    },
-    {
-      id: 5,
-      recipient: 'Maria Joquina',
-      deliveryman: 'João Victor Fernandes',
-      url: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-      city: 'Uberaba',
-      state: 'SP',
-      status: 'retirada',
-    },
-    {
-      id: 6,
-      recipient: 'Maria Joquina',
-      deliveryman: 'João Victor Fernandes',
-      url: 'https://api.adorable.io/avatars/50/abott@adorable.png',
-      city: 'Uberaba',
-      state: 'SP',
-      status: 'cancelada',
-    },
-  ]);
-
+  const [orders, setOrders] = useState([]);
   // const [filteredOrders, setFilteredOrders] = useState([]);
 
   useEffect(() => {
@@ -103,16 +46,19 @@ export default function Orders() {
           <tbody>
             {orders.map((order) => (
               <tr key={order.id}>
-                <td>#{order.id}</td>
-                <td>{order.recipient}</td>
+                <td>#0{order.id}</td>
+                <td>{order.recipient.name}</td>
                 <td>
                   <DeliverymanInfo>
-                    <img src={order.url} alt={order.deliveryman} />
-                    {order.deliveryman}
+                    <img
+                      src={order.deliveryman.avatar.url}
+                      alt={order.deliveryman.name}
+                    />
+                    {order.deliveryman.name}
                   </DeliverymanInfo>
                 </td>
-                <td>{order.city}</td>
-                <td>{order.state}</td>
+                <td>{order.recipient.city}</td>
+                <td>{order.recipient.state}</td>
                 <td>
                   <Status status={order.status} />
                 </td>
