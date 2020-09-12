@@ -1,20 +1,42 @@
 import React, { useState, useEffect } from 'react';
 
+import api from '~/services/api';
+
 import ActionsPanel from '~/components/ActionsPanel';
 import { TableContainer, TableActions } from '~components/Table';
-import { Container, DeliverymanInfo } from './styles';
 import Details from './Details';
 import Status from './Status';
+import { Container, DeliverymanInfo } from './styles';
 
 export default function Orders() {
   const [actionAvailable, setActionAvailable] = useState(true);
   const [view, setView] = useState(false);
-
   const [orders, setOrders] = useState([]);
-  // const [filteredOrders, setFilteredOrders] = useState([]);
 
   useEffect(() => {
-    // lógica para pegar os dados da api quando o componente executar
+    async function loadOrders() {
+      const response = await api.get('orders');
+      const { data } = response;
+
+      data.forEach((e) => {
+        const [first, second] = e.deliveryman.name.split(' ');
+        let word = first[0];
+
+        if (second) {
+          word += second[0];
+        }
+
+        e.deliveryman.word = word;
+        if (e.start_at !== null) e.status = 'retirada';
+        if (e.end_at !== null) e.status = 'entregue';
+        if (e.canceled_at !== null) e.status = 'cancelada';
+        if (!e.status) e.status = 'pendente';
+      });
+
+      setOrders(data);
+    }
+
+    loadOrders();
   }, []);
 
   function handleFilterChange(e) {
@@ -50,10 +72,16 @@ export default function Orders() {
                 <td>{order.recipient.name}</td>
                 <td>
                   <DeliverymanInfo>
-                    <img
-                      src={order.deliveryman.avatar.url}
-                      alt={order.deliveryman.name}
-                    />
+                    {order.deliveryman.avatar ? (
+                      <img
+                        src={order.deliveryman.avatar.url}
+                        alt={order.deliveryman.name}
+                      />
+                    ) : (
+                        <span className={order.status}>
+                          {order.deliveryman.word}
+                        </span>
+                      )}
                     {order.deliveryman.name}
                   </DeliverymanInfo>
                 </td>
