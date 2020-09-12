@@ -12,35 +12,47 @@ export default function Orders() {
   const [actionAvailable, setActionAvailable] = useState(true);
   const [view, setView] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [previousOrders, setPreviousOrders] = useState([]);
+
+  function handleFormat(e) {
+    const [first, second] = e.deliveryman.name.split(' ');
+    let word = first[0];
+
+    if (second) {
+      word += second[0];
+    }
+
+    e.deliveryman.word = word;
+    if (e.start_at !== null) e.status = 'retirada';
+    if (e.end_at !== null) e.status = 'entregue';
+    if (e.canceled_at !== null) e.status = 'cancelada';
+    if (!e.status) e.status = 'pendente';
+  }
 
   useEffect(() => {
     async function loadOrders() {
       const response = await api.get('orders');
       const { data } = response;
 
-      data.forEach((e) => {
-        const [first, second] = e.deliveryman.name.split(' ');
-        let word = first[0];
-
-        if (second) {
-          word += second[0];
-        }
-
-        e.deliveryman.word = word;
-        if (e.start_at !== null) e.status = 'retirada';
-        if (e.end_at !== null) e.status = 'entregue';
-        if (e.canceled_at !== null) e.status = 'cancelada';
-        if (!e.status) e.status = 'pendente';
-      });
+      data.forEach(handleFormat);
 
       setOrders(data);
+      setPreviousOrders(data);
     }
 
     loadOrders();
   }, []);
 
-  function handleFilterChange(e) {
-    // lógica para filtrar orders
+  async function handleFilterChange(e) {
+    if (e.target.value) {
+      const response = await api.get(`/orders/${e.target.value}`);
+      const { data } = response;
+
+      if (data) {
+        handleFormat(data);
+        setOrders([data]);
+      }
+    } else setOrders(previousOrders);
   }
 
   return (
@@ -68,7 +80,7 @@ export default function Orders() {
           <tbody>
             {orders.map((order) => (
               <tr key={order.id}>
-                <td>#0{order.id}</td>
+                <td>0{order.id}</td>
                 <td>{order.recipient.name}</td>
                 <td>
                   <DeliverymanInfo>
