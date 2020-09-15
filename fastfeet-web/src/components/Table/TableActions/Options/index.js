@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import { toast } from 'react-toastify';
 import { MdEdit, MdDelete, MdRemoveRedEye } from 'react-icons/md';
+import api from '~/services/api';
+
 import { Container, Option, Button } from './styles';
 
 export default function Options({ id, url, onClick, handleView }) {
@@ -28,7 +29,7 @@ export default function Options({ id, url, onClick, handleView }) {
 
   const history = useHistory();
 
-  function handleDelete() {
+  async function handleDelete() {
     // eslint-disable-next-line no-alert
     const confirm = window.confirm(
       `Você tem certeza que deseja excluir este item ? `
@@ -39,8 +40,8 @@ export default function Options({ id, url, onClick, handleView }) {
     }
 
     try {
-      /* await api.delete(`/ orders / ${ order.id }`);
-      updateOrders(); */
+      await api.delete(`/${url}/${id}`);
+      history.go(0);
       toast.success('Item excluído com sucesso!');
       onClick();
     } catch (err) {
