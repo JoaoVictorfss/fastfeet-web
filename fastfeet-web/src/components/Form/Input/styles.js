@@ -21,7 +21,7 @@ export const InputContainer = styled.div`
 
     &:focus {
       background-color: #fff;
-      border: 1px solid #3498db;
+      border: 2px solid #2684ff;
     }
   }
 

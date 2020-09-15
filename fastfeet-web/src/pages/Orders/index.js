@@ -16,13 +16,13 @@ export default function Orders() {
 
   function handleFormat(e) {
     const [first, second] = e.deliveryman.name.split(' ');
-    let word = first[0];
+    let words = first[0];
 
     if (second) {
-      word += second[0];
+      words += second[0];
     }
 
-    e.deliveryman.word = word;
+    e.deliveryman.words = words;
     if (e.start_at !== null) e.status = 'retirada';
     if (e.end_at !== null) e.status = 'entregue';
     if (e.canceled_at !== null) e.status = 'cancelada';
@@ -44,10 +44,10 @@ export default function Orders() {
   }, []);
 
   async function handleFilterChange(e) {
-    if (e.target.value) {
-      const response = await api.get(`/orders/${e.target.value}`);
+    const { value } = e.target;
+    if (Number(value)) {
+      const response = await api.get(`/orders/${value}`);
       const { data } = response;
-
       if (data) {
         handleFormat(data);
         setOrders([data]);
@@ -80,7 +80,7 @@ export default function Orders() {
           <tbody>
             {orders.map((order) => (
               <tr key={order.id}>
-                <td>0{order.id}</td>
+                <td>#0{order.id}</td>
                 <td>{order.recipient.name}</td>
                 <td>
                   <DeliverymanInfo>
@@ -91,7 +91,7 @@ export default function Orders() {
                       />
                     ) : (
                         <span className={order.status}>
-                          {order.deliveryman.word}
+                          {order.deliveryman.words}
                         </span>
                       )}
                     {order.deliveryman.name}

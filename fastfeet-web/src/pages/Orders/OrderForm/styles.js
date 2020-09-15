@@ -1,24 +1,14 @@
 import styled from 'styled-components';
 
-export const Select = styled.div`
+export const Options = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+  justify-content: space-between;
+  width: 48%;
 
-  select {
-    display: flex;
-    border-radius: 4px;
-    border: 1px solid #dddddd;
-    height: 40px;
-    padding: 0px 12px;
-    color: #abb2b9;
-    font-size: 15px;
-    background-color: #fff;
-
-    &:focus {
-      color: #444;
-      border: 1px solid #3498db;
-    }
+  div {
+    padding: 2px;
   }
 
   strong {
@@ -34,8 +24,4 @@ export const Select = styled.div`
 export const SelectContainer = styled.div`
   display: flex;
   justify-content: space-between;
-
-  div {
-    width: 48%;
-  }
 `;
