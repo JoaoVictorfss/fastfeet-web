@@ -77,9 +77,7 @@ export default function Deliveryman() {
                   {deliveryman.avatar ? (
                     <img src={deliveryman.avatar.url} alt={deliveryman.name} />
                   ) : (
-                      <span className={deliveryman.status}>
-                        {deliveryman.initials}
-                      </span>
+                      <span>{deliveryman.initials}</span>
                     )}
                 </Picture>
               </td>
