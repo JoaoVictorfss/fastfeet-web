@@ -10,6 +10,7 @@ import { Container, Option, Button } from './styles';
 export default function Options({ id, url, onClick, handleView }) {
   const [showView, setShowView] = useState(false);
   const [showEdit, setshowEdit] = useState(true);
+
   const [labelDelete, setLabelDelete] = useState('Excluir');
 
   useEffect(() => {

@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import PropTypes from 'prop-types';
 import { MdClose } from 'react-icons/md';
+
 import { WrapperView, Container, Content } from './styles';
 
-export default function Details({ setView }) {
+export default function order({ setView, order }) {
   return (
     <WrapperView>
       <Container>
@@ -14,19 +15,23 @@ export default function Details({ setView }) {
             <li>
               <strong>Informações sobre a encomenda</strong>
             </li>
-            <li>Rua Beethoven, 1729</li>
-            <li>Diadema-SP</li>
-            <li>099660-580</li>
+            <li>
+              {order.recipient.street}, {order.recipient.number}
+            </li>
+            <li>
+              {order.recipient.city}-{order.recipient.state}
+            </li>
+            <li>{order.recipient.zip_code}</li>
           </ul>
           <ul>
             <li>
               <strong>Datas</strong>
             </li>
             <li>
-              <strong>Retirada</strong>: 25/01/2020
+              <strong>Retirada</strong>: {order.start_at}
             </li>
             <li>
-              <strong>Entrega</strong>: 25/01/2020
+              <strong>Entrega</strong>: {order.end_at}
             </li>
           </ul>
           <ul>
@@ -40,6 +45,7 @@ export default function Details({ setView }) {
   );
 }
 
-Details.propTypes = {
+order.propTypes = {
   setView: PropTypes.func.isRequired,
+  order: PropTypes.object.isRequired,
 };

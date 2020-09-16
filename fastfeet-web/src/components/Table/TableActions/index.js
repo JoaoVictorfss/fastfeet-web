@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 
 import { MdMoreHoriz } from 'react-icons/md';
 import { ActionStyle, Container } from './styles';
 
 import Options from './Options';
+
+import api from '~/services/api';
 
 export default function TableActions({
   id,
@@ -12,6 +16,7 @@ export default function TableActions({
   actionAvailable,
   view,
   setView,
+  set,
   url,
 }) {
   const [visible, setVisible] = useState(false);
@@ -31,7 +36,24 @@ export default function TableActions({
     }
   }
 
-  function handleView() {
+  async function handleView() {
+    const response = await api.get(`${url}/${id}`);
+    const { data } = response;
+
+    if (url === 'orders') {
+      if (data.start_at !== null) {
+        data.start_at = format(parseISO(data.start_at), "dd'/0'M'/'yyyy", {
+          locale: pt,
+        });
+      }
+      if (data.start_at !== null && data.end_at !== null) {
+        data.end_at = format(parseISO(data.end_at), "dd'/0'M'/'yyyy", {
+          locale: pt,
+        });
+      }
+    }
+
+    set(data);
     setView(!view);
     onClick();
   }
@@ -50,6 +72,7 @@ export default function TableActions({
 
 TableActions.defaultProps = {
   setView: () => { },
+  set: () => { },
   view: false,
 };
 
@@ -59,5 +82,6 @@ TableActions.propTypes = {
   actionAvailable: PropTypes.bool.isRequired,
   view: PropTypes.bool,
   setView: PropTypes.func,
+  set: PropTypes.func,
   url: PropTypes.string.isRequired,
 };

@@ -13,6 +13,7 @@ export default function Orders() {
   const [view, setView] = useState(false);
   const [orders, setOrders] = useState([]);
   const [previousOrders, setPreviousOrders] = useState([]);
+  const [order, setOrder] = useState({});
 
   function handleFormat(e) {
     const [first, second] = e.deliveryman.name.split(' ');
@@ -109,6 +110,7 @@ export default function Orders() {
                     actionAvailable={actionAvailable}
                     view={view}
                     setView={setView}
+                    set={setOrder}
                     url="orders"
                   />
                 </td>
@@ -117,7 +119,7 @@ export default function Orders() {
           </tbody>
         </TableContainer>
       </Container>
-      {view && <Details setView={() => setView(!view)} />};
+      {view && <Details order={order} setView={() => setView(!view)} />};
     </>
   );
 }
