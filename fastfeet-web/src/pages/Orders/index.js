@@ -79,33 +79,31 @@ export default function Orders() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
-              <tr key={order.id}>
-                <td>#0{order.id}</td>
-                <td>{order.recipient.name}</td>
+            {orders.map((el) => (
+              <tr key={el.id}>
+                <td>#0{el.id}</td>
+                <td>{el.recipient.name}</td>
                 <td>
                   <DeliverymanInfo>
-                    {order.deliveryman.avatar ? (
+                    {el.deliveryman.avatar ? (
                       <img
-                        src={order.deliveryman.avatar.url}
-                        alt={order.deliveryman.name}
+                        src={el.deliveryman.avatar.url}
+                        alt={el.deliveryman.name}
                       />
                     ) : (
-                        <span className={order.status}>
-                          {order.deliveryman.words}
-                        </span>
+                        <span className={el.status}>{el.deliveryman.words}</span>
                       )}
-                    {order.deliveryman.name}
+                    {el.deliveryman.name}
                   </DeliverymanInfo>
                 </td>
-                <td>{order.recipient.city}</td>
-                <td>{order.recipient.state}</td>
+                <td>{el.recipient.city}</td>
+                <td>{el.recipient.state}</td>
                 <td>
-                  <Status status={order.status} />
+                  <Status status={el.status} />
                 </td>
                 <td>
                   <TableActions
-                    id={order.id}
+                    id={el.id}
                     setClick={() => setActionAvailable(!actionAvailable)}
                     actionAvailable={actionAvailable}
                     view={view}

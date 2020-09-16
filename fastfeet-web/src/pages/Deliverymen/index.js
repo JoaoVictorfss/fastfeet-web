@@ -1,55 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import api from '~/services/api';
 
 import ActionsPanel from '~/components/ActionsPanel';
-import { Container } from './styles';
+import { Container, Picture } from './styles';
 import { TableContainer, TableActions } from '~components/Table';
 
 export default function Deliveryman() {
   const [actionAvailable, setActionAvailable] = useState(true);
-  const [deliverymen, setDeliverymen] = useState([
-    {
-      id: 0,
-      foto: 'MF',
-      name: 'João Victor',
-      email: 'jvsfernandes924@gmail.com',
-    },
-    {
-      id: 1,
-      foto: 'MF',
-      name: 'João Victor',
-      email: 'jvsfernandes924@gmail.com',
-    },
-    {
-      id: 2,
-      foto: 'MF',
-      name: 'João Victor',
-      email: 'jvsfernandes924@gmail.com',
-    },
-    {
-      id: 3,
-      foto: 'MF',
-      name: 'João Victor',
-      email: 'jvsfernandes924@gmail.com',
-    },
-    {
-      id: 4,
-      foto: 'MF',
-      name: 'João Victor',
-      email: 'jvsfernandes924@gmail.com',
-    },
-  ]);
+  const [deliverymen, setDeliverymen] = useState([]);
+  const [previousDeliverymen, setPreviousDeliverymen] = useState([]);
 
-  const history = useHistory();
+  function handleInitials(e) {
+    const [first, second] = e.name.split(' ');
+    let initials = first[0];
 
-  // const [filtereddeliverymen, setFiltereddeliverymen] = useState([]);
+    if (second) {
+      initials += second[0];
+    }
+    e.initials = initials;
+  }
 
   useEffect(() => {
-    // lógica para pegar os dados da api quando o componente executar
+    async function loadDeliverymen() {
+      const response = await api.get('deliveryman');
+      const { data } = response;
+
+      data.forEach(handleInitials);
+
+      setDeliverymen(data);
+      setPreviousDeliverymen(data);
+    }
+
+    loadDeliverymen();
   }, []);
 
-  function handleFilterChange(e) {
-    // lógica para filtrar deliverymen
+  async function handleFilterChange(e) {
+    const { value } = e.target;
+    if (value) {
+      const response = await api.get('/deliveryman', {
+        params: { name: value },
+      });
+      const { data } = response;
+
+      if (data.length) {
+        handleInitials(data[0]);
+        setDeliverymen(data);
+      }
+    } else setDeliverymen(previousDeliverymen);
   }
 
   return (
@@ -72,15 +69,25 @@ export default function Deliveryman() {
           </tr>
         </thead>
         <tbody>
-          {deliverymen.map((order) => (
-            <tr key={order.id}>
-              <td>#{order.id}</td>
-              <td>{order.foto}</td>
-              <td>{order.name}</td>
-              <td>{order.email}</td>
+          {deliverymen.map((deliveryman) => (
+            <tr key={deliveryman.id}>
+              <td>#0{deliveryman.id}</td>
+              <td>
+                <Picture>
+                  {deliveryman.avatar ? (
+                    <img src={deliveryman.avatar.url} alt={deliveryman.name} />
+                  ) : (
+                      <span className={deliveryman.status}>
+                        {deliveryman.initials}
+                      </span>
+                    )}
+                </Picture>
+              </td>
+              <td>{deliveryman.name}</td>
+              <td>{deliveryman.email}</td>
               <td>
                 <TableActions
-                  id={order.id}
+                  id={deliveryman.id}
                   setClick={() => setActionAvailable(!actionAvailable)}
                   actionAvailable={actionAvailable}
                   url="deliverymen"
