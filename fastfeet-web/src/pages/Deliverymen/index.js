@@ -88,7 +88,7 @@ export default function Deliveryman() {
                   id={deliveryman.id}
                   setClick={() => setActionAvailable(!actionAvailable)}
                   actionAvailable={actionAvailable}
-                  url="deliverymen"
+                  url="deliveryman"
                 />
               </td>
             </tr>

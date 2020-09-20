@@ -34,32 +34,39 @@ export default function OrderForm() {
         };
       }
       // load deliverymen
-      const res_deliverymen = await api.get('/deliveryman');
-      const deliverymen_data = res_deliverymen.data.map(formatOptions);
-      setDeliverymen(deliverymen_data);
-      // default deliveryman
-      setDeliveryman(deliverymen_data[0]);
-
-      // load recipients
-      const res_recipients = await api.get('/recipients');
-      const recipients_data = res_recipients.data.map(formatOptions);
-      setRecipients(recipients_data);
-      // default recipient
-      setRecipient(recipients_data[0]);
+      try {
+        const res_deliverymen = await api.get('/deliveryman');
+        const deliverymen_data = res_deliverymen.data.map(formatOptions);
+        setDeliverymen(deliverymen_data);
+        // default deliveryman
+        setDeliveryman(deliverymen_data[0]);
+        // load recipients
+        const res_recipients = await api.get('/recipients');
+        const recipients_data = res_recipients.data.map(formatOptions);
+        setRecipients(recipients_data);
+        // default recipient
+        setRecipient(recipients_data[0]);
+      } catch (err) {
+        toast.error('Falha ao carregar dados');
+      }
     }
 
     // load order datas
     async function loadOrderInfo() {
-      const { data } = await api.get(`/orders/${id}`);
-      setProduct(data.product);
-      setRecipient({
-        value: data.recipient.id,
-        label: data.recipient.name,
-      });
-      setDeliveryman({
-        value: data.deliveryman.id,
-        label: data.deliveryman.name,
-      });
+      try {
+        const { data } = await api.get(`/orders/${id}`);
+        setProduct(data.product);
+        setRecipient({
+          value: data.recipient.id,
+          label: data.recipient.name,
+        });
+        setDeliveryman({
+          value: data.deliveryman.id,
+          label: data.deliveryman.name,
+        });
+      } catch (err) {
+        toast.error('Falha ao carregar dados');
+      }
     }
 
     loadOptions();
