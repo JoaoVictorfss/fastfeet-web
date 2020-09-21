@@ -27,7 +27,7 @@ export default function Routes() {
         isPrivate
       />
       <Route
-        path="/deliveryman/register"
+        path="/deliverymen/register"
         component={DeliverymanForm}
         isPrivate
       />
