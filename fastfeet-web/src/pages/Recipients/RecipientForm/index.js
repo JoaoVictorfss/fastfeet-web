@@ -3,19 +3,33 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
+import api from '~/services/api';
 import history from '~/services/history';
 
 import { Container, InitialContent, FormArea, Input } from '~components/Form';
 import { InputContainer1, InputContainer2 } from './styles';
 
 export default function OrderForm() {
+  const [recipient, setRecipient] = useState({});
   const { id } = useParams();
   const formRef = useRef(null);
   const [title, setTitle] = useState('Cadastro de distinatário');
 
   useEffect(() => {
-    if (id) setTitle('Edição de destinatário');
+    async function loadRecipient() {
+      try {
+        const { data } = await api.get(`recipients/${id}`);
+        setRecipient(data);
+      } catch (err) {
+        toast.error('Falha ao carregar dados');
+      }
+    }
+    if (id) {
+      setTitle('Edição de entregadores');
+      loadRecipient();
+    }
   }, [id]);
+
   async function handleSubmit(data) {
     try {
       formRef.current.setErrors({});
@@ -33,8 +47,15 @@ export default function OrderForm() {
         abortEarly: false,
       });
 
+      if (id) {
+        await api.put(`/recipients/${id}`, data);
+        toast.success('Destinatário atualizado com sucesso');
+      } else {
+        await api.post('/recipients', data);
+        toast.success('Destinatário criado com sucesso');
+      }
+
       history.goBack();
-      toast.success('Salvo');
     } catch (err) {
       const validationErrors = {};
 
@@ -45,7 +66,7 @@ export default function OrderForm() {
 
         formRef.current.setErrors(validationErrors);
       } else {
-        toast.error('Algo deu errado ao salvar o destinatário');
+        toast.error('Erro ao salvar o destinatário');
       }
     }
   }
@@ -56,36 +77,41 @@ export default function OrderForm() {
         title={title}
       />
 
-      <FormArea onSubmit={handleSubmit} ref={formRef}>
+      <FormArea onSubmit={handleSubmit} ref={formRef} initialData={recipient}>
         <Input
           name="name"
           type="text"
           label="Nome"
-          placeholder="Ludwing van Beethoven"
+          placeholder="Nome do distário"
         />
         <InputContainer1>
+          <Input name="street" label="Rua" type="text" placeholder="Rua" />
           <Input
-            name="street"
-            label="Rua"
+            name="number"
+            label="Número"
             type="text"
-            placeholder="Rua Beethoven"
+            placeholder="Número da residência"
           />
-          <Input name="number" label="Número" type="text" placeholder="1729" />
           <Input name="complement" label="Complemento" type="text" />
         </InputContainer1>
         <InputContainer2>
-          <Input name="city" label="Cidade" type="text" placeholder="Diadema" />
+          <Input
+            name="city"
+            label="Cidade"
+            type="text"
+            placeholder="Cidade do destinatário"
+          />
           <Input
             name="state"
             label="Estado"
             type="text"
-            placeholder="São Paulo"
+            placeholder="Estado do destinatário"
           />
           <Input
-            name="zipCode"
+            name="zip_code"
             label="Cep"
             type="text"
-            placeholder="09960-580"
+            placeholder="CEP do destinatário"
           />
         </InputContainer2>
       </FormArea>

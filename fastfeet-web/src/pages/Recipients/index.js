@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+
+import api from '~/services/api';
 
 import ActionsPanel from '~/components/ActionsPanel';
 import { TableContainer, TableActions } from '~components/Table';
@@ -7,49 +8,33 @@ import { Container } from './styles';
 
 export default function Recipients() {
   const [actionAvailable, setActionAvailable] = useState(true);
-  const [orders, setRecipients] = useState([
-    {
-      id: 0,
-      name: 'João Victor',
-      endereco: 'Rua Bethoven, 1729, Diadema - São Paulo',
-    },
-    {
-      id: 2,
-      name: 'João Victor Fernandes',
-      endereco: 'Rua Bethoven, 1729, Diadema - São Paulo',
-    },
-    {
-      id: 3,
-      name: 'João Victor Fernandes',
-      endereco: 'Rua Bethoven, 1729, Diadema - São Paulo',
-    },
-    {
-      id: 4,
-      name: 'João Victor Fernandes',
-      endereco: 'Rua Bethoven, 1729, Diadema - São Paulo',
-    },
-    {
-      id: 5,
-      name: 'João Victor Fernandes',
-      endereco: 'Rua Bethoven, 1729, Diadema - São Paulo',
-    },
-    {
-      id: 6,
-      name: 'João Victor Fernandes',
-      endereco: 'Rua Bethoven, 1729, Diadema - São Paulo',
-    },
-  ]);
-
-  const history = useHistory();
-
-  // const [filteredOrders, setFilteredOrders] = useState([]);
+  const [recipients, setRecipients] = useState([]);
+  const [previousRecipients, setPreviousRecipients] = useState([]);
 
   useEffect(() => {
-    // lógica para pegar os dados da api quando o componente executar
+    async function loadRecipients() {
+      const response = await api.get('recipients');
+      const { data } = response;
+
+      setRecipients(data);
+      setPreviousRecipients(data);
+    }
+
+    loadRecipients();
   }, []);
 
-  function handleFilterChange(e) {
-    // lógica para filtrar orders
+  async function handleFilterChange(e) {
+    const { value } = e.target;
+    if (value) {
+      // search by name
+      const response = await api.get('/recipients', {
+        params: { name: value },
+      });
+      const { data } = response;
+      if (data.length) {
+        setRecipients(data);
+      }
+    } else setRecipients(previousRecipients);
   }
 
   return (
@@ -60,7 +45,6 @@ export default function Recipients() {
         placeholder="destinatário"
         url="recipients"
       />
-
       <TableContainer>
         <thead>
           <tr>
@@ -71,14 +55,17 @@ export default function Recipients() {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
-            <tr key={order.id}>
-              <td>#{order.id}</td>
-              <td>{order.name}</td>
-              <td>{order.endereco}</td>
+          {recipients.map((recipient) => (
+            <tr key={recipient.id}>
+              <td>#0{recipient.id}</td>
+              <td>{recipient.name}</td>
+              <td>
+                {recipient.street}, {recipient.number}, {recipient.city}-
+                {recipient.state}
+              </td>
               <td>
                 <TableActions
-                  id={order.id}
+                  id={recipient.id}
                   setClick={() => setActionAvailable(!actionAvailable)}
                   actionAvailable={actionAvailable}
                   url="recipients"
