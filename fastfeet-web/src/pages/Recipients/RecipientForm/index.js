@@ -2,18 +2,18 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
+import history from '~/services/history';
 
 import api from '~/services/api';
-import history from '~/services/history';
 
 import { Container, InitialContent, FormArea, Input } from '~components/Form';
 import { InputContainer1, InputContainer2 } from './styles';
 
-export default function OrderForm() {
-  const [recipient, setRecipient] = useState({});
-  const { id } = useParams();
-  const formRef = useRef(null);
+export default function RecipientForm() {
   const [title, setTitle] = useState('Cadastro de distinatário');
+  const [recipient, setRecipient] = useState({});
+  const formRef = useRef(null);
+  const { id } = useParams();
 
   useEffect(() => {
     async function loadRecipient() {
@@ -40,7 +40,7 @@ export default function OrderForm() {
         number: Yup.string().required('Campo obrigatório'),
         city: Yup.string().required('Campo obrigatório'),
         state: Yup.string().required('Campo obrigatório'),
-        zipCode: Yup.string().required('Campo obrigatório'),
+        zip_code: Yup.string().required('Campo obrigatório'),
       });
 
       await schema.validate(data, {
@@ -52,6 +52,7 @@ export default function OrderForm() {
         toast.success('Destinatário atualizado com sucesso');
       } else {
         await api.post('/recipients', data);
+
         toast.success('Destinatário criado com sucesso');
       }
 
