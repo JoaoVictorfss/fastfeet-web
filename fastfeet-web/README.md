@@ -67,6 +67,13 @@
 
  ##### Na pasta, instale as dependências:
    > yarn 
+   
+ ##### Execute no terminal o seguinte comando:
+   > yarn start
+   
+ ##### Para logar como administrador, use:
+   > email: admin@fastfeet.com
+   > senha: 123456 
 
   ## Licença 
   The [MIT License]() (MIT)
