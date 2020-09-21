@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import api from '~/services/api';
 
 import { TableContainer, TableActions } from '~components/Table';
 import { Container } from './styles';
@@ -8,46 +8,17 @@ import Details from './Details';
 export default function Problems() {
   const [actionAvailable, setActionAvailable] = useState(true);
   const [view, setView] = useState(false);
-
-  const [problems, setProblems] = useState([
-    {
-      id: 0,
-      problem:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab?',
-    },
-    {
-      id: 1,
-      problem:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab?',
-    },
-    {
-      id: 2,
-      problem:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab?',
-    },
-    {
-      id: 3,
-      problem:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab?',
-    },
-    {
-      id: 4,
-      problem:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab?',
-    },
-    {
-      id: 5,
-      problem:
-        'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam natus impedit quia ad nostrum accusamus praesentium odio inventore qui alias, distinctio, sed ab. Eaque corporis architecto necessitatibus culpa saepe ab?',
-    },
-  ]);
-
-  const history = useHistory();
-
-  // const [filteredProblems, setFilteredProblems] = useState([]);
+  const [problems, setProblems] = useState([]);
+  const [problem, setProblem] = useState([]);
 
   useEffect(() => {
-    // lógica para pegar os dados da api quando o componente executar
+    async function loadProblems() {
+      const response = await api.get('problems');
+      const { data } = response;
+      setProblems(data);
+    }
+
+    loadProblems();
   }, []);
 
   return (
@@ -64,19 +35,20 @@ export default function Problems() {
             </tr>
           </thead>
           <tbody>
-            {problems.map((problem) => (
-              <tr key={problem.id}>
-                <td>#0{problem.id}</td>
+            {problems.map((el) => (
+              <tr key={el.id}>
+                <td>#0{el.id}</td>
                 <td>
-                  <p>{problem.problem}</p>
+                  <p>{el.description}</p>
                 </td>
                 <td>
                   <TableActions
-                    id={problem.id}
+                    id={el.id}
                     setClick={() => setActionAvailable(!actionAvailable)}
                     actionAvailable={actionAvailable}
                     view={view}
                     setView={setView}
+                    set={setProblem}
                     url="problems"
                   />
                 </td>
@@ -85,7 +57,7 @@ export default function Problems() {
           </tbody>
         </TableContainer>
       </Container>
-      {view && <Details setView={() => setView(!view)} />};
+      {view && <Details setView={() => setView(!view)} problem={problem} />};
     </>
   );
 }
