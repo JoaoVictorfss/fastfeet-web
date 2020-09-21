@@ -46,7 +46,7 @@
 - [X] Log out da aplicação
 
 ## Layout da Aplicação Web :dash:
-![Fastfeet](https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/FastFeet.gif)
+[![](http://img.youtube.com/vi/f-Jt-qbtnyQ/0.jpg)](http://www.youtube.com/watch?v=f-Jt-qbtnyQ "")
 
 ## Pré-requisitos
    back-end da aplicação em execução
