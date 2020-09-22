@@ -57,7 +57,7 @@ export default function Problems() {
           </tbody>
         </TableContainer>
       </Container>
-      {view && <Details setView={() => setView(!view)} problem={problem} />};
+      {view && <Details setView={() => setView(!view)} problem={problem} />}
     </>
   );
 }

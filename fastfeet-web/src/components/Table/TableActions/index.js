@@ -52,7 +52,6 @@ export default function TableActions({
         });
       }
     }
-
     set(data);
     setView(!view);
     onClick();

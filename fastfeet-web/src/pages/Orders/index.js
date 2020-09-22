@@ -117,7 +117,7 @@ export default function Orders() {
           </tbody>
         </TableContainer>
       </Container>
-      {view && <Details order={order} setView={() => setView(!view)} />};
+      {view && <Details order={order} setView={() => setView(!view)} />}
     </>
   );
 }
