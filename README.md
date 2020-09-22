@@ -47,6 +47,11 @@
 
 ## Layout da Aplicação Web :dash:
 ![Fastfeet](https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/FastFeet.gif)
+<img src="https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/signIN.png" width=50% heigh=50%>
+<img src="https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/pageOrder.jpg" width=50% heigh=50%>
+<img src="https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/pageDeliveryman.jpg" width=50% heigh=50%>
+<img src="https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/pageRecipient.jpg" width=50% heigh=50%>
+<img src="https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/pageProblems.jpg" width=50% heigh=50%>
 ## Pré-requisitos
    back-end da aplicação em execução
 
