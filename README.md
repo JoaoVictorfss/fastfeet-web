@@ -31,8 +31,7 @@
 ## Descrição do Projeto :star:
 <p align="justify">
   O Fastfeet é um sistema de gerenciamento de entregas, sendo o desafio final do curso Bootcamp-GoStack 09 da Rocketseat. 
-  Sua versão web é destinado ao administrador, em que o mesmo pode editar,criar, e apagar os dados de uma encomenda, 
-  destinatário ou entregador, além da opção de apagar uma encomenda com problemas ou visualizar tanto uma encomenda quanto um problema.
+  Sua versão web é destinado ao administrador.
 .</p>
 
 ## Funcionalidades :checkered_flag:
