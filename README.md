@@ -36,7 +36,7 @@
 
 ## Funcionalidades :checkered_flag:
 - [X] Acesso e autenticação do administrador
-- [X] Visualizão de entregadores, encomendas, destinatários e problemas
+- [X] Visualização de entregadores, encomendas, destinatários e problemas
 - [X] Criação e atualização de encomendas
 - [X] Criação e atualização de entregador
 - [X] Criação e atualização de destinatário
