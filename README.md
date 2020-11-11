@@ -32,7 +32,7 @@
 <p align="justify">
   O Fastfeet é um sistema de gerenciamento de entregas, sendo o desafio final do curso Bootcamp-GoStack 09 da Rocketseat. 
   Sua versão web é destinado ao administrador.
-.</p>
+</p>
 
 ## Funcionalidades :checkered_flag:
 - [X] Acesso e autenticação do administrador
