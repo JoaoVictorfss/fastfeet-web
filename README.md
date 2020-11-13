@@ -12,7 +12,7 @@
   <img src="http://img.shields.io/static/v1?label=status&message=em%20desenvolvimento&color=GREEN&style=plastic"/>
 </p>
 
-> Status do Projeto: Em desenvolvimento >> Esta versão contém alguns bugs a serem resolvidos :warning:
+> Status do Projeto: Em desenvolvimento :warning:
 
 ### Tópicos 
 
@@ -44,7 +44,7 @@
 - [X] Deleção de encomendas, destinatários, entregadores e problemas 
 - [X] Log out da aplicação
 
-## Layout da Aplicação Web :dash:
+## Layout da Aplicação Web 🎨
 ![Fastfeet](https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/FastFeet.gif)
 <img src="https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/signIN.png" width=80% heigh=80%>
 <img src="https://github.com/JoaoVictorfss/fastfeet-web/blob/fastfeet-web-dev/pageOrder.jpg" width=80% heigh=80%>
